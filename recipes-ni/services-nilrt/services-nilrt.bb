@@ -61,40 +61,40 @@ SYSTEMD_SERVICE:${PN} = "\
 	wirelesssetdomain.service \
 "
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 do_install () {
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${libdir}/systemd/scripts
 
-	install -m 0644 ${WORKDIR}/cleanvarcache.service ${D}${systemd_unitdir}/system
-	install -m 0644 ${WORKDIR}/mountconfig.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/mountconfig ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nicheckbiosconfig.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/nicheckbiosconfig ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nicleanefivars.service ${D}${systemd_unitdir}/system
-	install -m 0644 ${WORKDIR}/nicleanstalelinks.service ${D}${systemd_unitdir}/system
-	install -m 0644 ${WORKDIR}/nicreatecpuacctgroups.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/nicreatecpuacctgroups ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nicreatecpusets.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/nicreatecpusets ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/niconfiguretracefs.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/niconfiguretracefs ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nidisablecstates.service ${D}${systemd_unitdir}/system
-	install -m 0644 ${WORKDIR}/nisetcommitratio.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/nisetcommitratio ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nisetreboottype.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/nisetreboottype ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nisetupkernelconfig.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/nisetupkernelconfig ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nipopulateconfigdir.service ${D}${systemd_unitdir}/system
-	install -m 0644 ${WORKDIR}/populateconfig.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/populateconfig ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/wirelesssetdomain.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/wirelesssetdomain ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/cleanvarcache.service ${D}${systemd_unitdir}/system
+	install -m 0644 ${S}/mountconfig.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/mountconfig ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nicheckbiosconfig.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/nicheckbiosconfig ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nicleanefivars.service ${D}${systemd_unitdir}/system
+	install -m 0644 ${S}/nicleanstalelinks.service ${D}${systemd_unitdir}/system
+	install -m 0644 ${S}/nicreatecpuacctgroups.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/nicreatecpuacctgroups ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nicreatecpusets.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/nicreatecpusets ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/niconfiguretracefs.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/niconfiguretracefs ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nidisablecstates.service ${D}${systemd_unitdir}/system
+	install -m 0644 ${S}/nisetcommitratio.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/nisetcommitratio ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nisetreboottype.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/nisetreboottype ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nisetupkernelconfig.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/nisetupkernelconfig ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nipopulateconfigdir.service ${D}${systemd_unitdir}/system
+	install -m 0644 ${S}/populateconfig.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/populateconfig ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/wirelesssetdomain.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/wirelesssetdomain ${D}${libdir}/systemd/scripts
 
-	install -m 0644 ${WORKDIR}/firewall.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/firewall ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/firewall.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/firewall ${D}${libdir}/systemd/scripts
 	# Substitute configfs paths
 	sed -i 's|^IPTABLES_CONF=.*$|IPTABLES_CONF=/etc/natinst/share/iptables.conf|g' ${D}${libdir}/systemd/scripts/firewall
 	sed -i 's|^IP6TABLES_CONF=.*$|IP6TABLES_CONF=/etc/natinst/share/ip6tables.conf|g' ${D}${libdir}/systemd/scripts/firewall
@@ -102,13 +102,13 @@ do_install () {
 	! egrep '^[a-zA-Z0-9]*_CONF=.*$' ${D}${libdir}/systemd/scripts/firewall | egrep -v '^(IPTABLES_CONF)|(IP6TABLES_CONF)=.*$'
 
 	install -d ${D}${sysconfdir}/natinst
-	install -m 0644 ${WORKDIR}/iso3166-translation.txt ${D}${sysconfdir}/natinst
+	install -m 0644 ${S}/iso3166-translation.txt ${D}${sysconfdir}/natinst
 
 	install -d ${D}${sysconfdir}/default
-	install -m 0644 lvrt-cgroup ${D}${sysconfdir}/default/lvrt-cgroup
+	install -m 0644 ${S}/lvrt-cgroup ${D}${sysconfdir}/default/lvrt-cgroup
 
 	install -d ${D}${datadir}/${BPN}
-	install -m 0755 lvrt-cgroup.sh ${D}${datadir}/${BPN}/lvrt-cgroup.sh
+	install -m 0755 ${S}/lvrt-cgroup.sh ${D}${datadir}/${BPN}/lvrt-cgroup.sh
 }
 
 FILES:${PN} += " \

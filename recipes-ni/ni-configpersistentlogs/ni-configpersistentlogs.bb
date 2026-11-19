@@ -32,7 +32,7 @@ do_install () {
 
 	if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
 		install -d ${D}${systemd_system_unitdir}
-		install -m 0644 ${WORKDIR}/ni-configpersistentlogs.service ${D}${systemd_system_unitdir}/
+		install -m 0644 ${S}/ni-configpersistentlogs.service ${D}${systemd_system_unitdir}/
 		sed -i "s|<PATH_VOLATILES>|${PATH_VOLATILES_SYSD}|g" ${D}${script_location}/ni-configpersistentlogs
 		sed -i "s|<PERSISTENT_LINE>|${PERSISTENT_SYSD}|g" ${D}${script_location}/ni-configpersistentlogs
 		sed -i "s|<VOLATILE_LINE>|${VOLATILE_SYSD}|g" ${D}${script_location}/ni-configpersistentlogs

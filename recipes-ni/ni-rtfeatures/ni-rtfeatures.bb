@@ -51,8 +51,8 @@ do_install:append () {
 
 	if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
 		install -d ${D}${systemd_system_unitdir}
-		install -m 0644 ${WORKDIR}/handle_cpld_ip_reset.service ${D}${systemd_system_unitdir}/
-		install -m 0644 ${WORKDIR}/ni-rtfeatures.service ${D}${systemd_system_unitdir}/
+		install -m 0644 ${UNPACKDIR}/handle_cpld_ip_reset.service ${D}${systemd_system_unitdir}/
+		install -m 0644 ${UNPACKDIR}/ni-rtfeatures.service ${D}${systemd_system_unitdir}/
 	fi
 }
 

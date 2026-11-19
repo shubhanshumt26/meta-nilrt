@@ -37,7 +37,7 @@ do_install () {
 	install -m 0755 ${S}/initscript ${D}${script_location}/pstore-save
 	if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
 		install -d ${D}${systemd_system_unitdir}
-		install -m 0644 ${WORKDIR}/pstore-save.service ${D}${systemd_system_unitdir}/
+		install -m 0644 ${S}/pstore-save.service ${D}${systemd_system_unitdir}/
 	fi
 }
 

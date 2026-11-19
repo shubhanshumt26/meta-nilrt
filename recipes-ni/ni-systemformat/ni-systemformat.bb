@@ -21,7 +21,6 @@ SRC_URI = "\
 	file://init/ \
 	file://src/ \
 	file://Makefile \
-	file://nitargetinfo.service \
 "
 
 S = "${UNPACKDIR}"
@@ -55,7 +54,7 @@ do_install () {
 
 	# Install project initscripts
 	install -d ${D}${script_location}
-	install -m 0755 ${S}/nitargetinfo ${D}${script_location}
+	install -m 0755 ${S}/init/nitargetinfo ${D}${script_location}/nitargetinfo
 
 	# The nisystemformat binary can be executed by anyone in the 'ni' group.
 	chown 0:${LVRT_GROUP} ${D}${bindir}/nisystemformat
@@ -66,7 +65,7 @@ do_install () {
 
 	if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
 		install -d ${D}${systemd_system_unitdir}
-		install -m 0644 ${WORKDIR}/nitargetinfo.service ${D}${systemd_system_unitdir}
+		install -m 0644 ${S}/init/nitargetinfo.service ${D}${systemd_system_unitdir}/
 	fi
 }
 

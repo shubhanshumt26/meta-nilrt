@@ -59,6 +59,6 @@ do_install() {
 
     if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
         install -d ${D}${systemd_system_unitdir}
-        install -m 0644 ${WORKDIR}/rtctl.service ${D}${systemd_system_unitdir}/
+        install -m 0644 ${UNPACKDIR}/rtctl.service ${D}${systemd_system_unitdir}/
     fi
 }

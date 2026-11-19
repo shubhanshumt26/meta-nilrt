@@ -19,7 +19,7 @@ SRC_URI = " \
 	file://niselectnetnaming \
 "
 
-inherit systemd
+inherit features_check systemd
 SYSTEMD_PACKAGES = "${PN}"
 SYSTEMD_AUTO_ENABLE:${PN} = "enable"
 SYSTEMD_SERVICE:${PN} = " \
@@ -40,20 +40,20 @@ FILES:${PN} += " \
 	${libdir}/systemd/scripts/niselectnetnaming \
 "
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 do_install () {
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${libdir}/systemd/scripts
 
-	install -m 0644 ${WORKDIR}/mountcompatibility.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/mountcompatibility ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/mountuserfs.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/mountuserfs ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/nisafemodereason.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/nisafemodereason ${D}${libdir}/systemd/scripts
-	install -m 0644 ${WORKDIR}/niselectnetnaming.service ${D}${systemd_unitdir}/system
-	install -m 0755 ${WORKDIR}/niselectnetnaming ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/mountcompatibility.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/mountcompatibility ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/mountuserfs.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/mountuserfs ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/nisafemodereason.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/nisafemodereason ${D}${libdir}/systemd/scripts
+	install -m 0644 ${S}/niselectnetnaming.service ${D}${systemd_unitdir}/system
+	install -m 0755 ${S}/niselectnetnaming ${D}${libdir}/systemd/scripts
 }
 
 REQUIRED_DISTRO_FEATURES = " systemd"

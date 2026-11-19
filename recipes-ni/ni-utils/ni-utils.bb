@@ -71,9 +71,9 @@ do_install () {
 		install -d ${D}${systemd_unitdir}/system
 		install -d ${D}${sbindir}
 
-		install -m 0644   ${WORKDIR}/nisetbootmode.service       ${D}${systemd_unitdir}/system
-		install -m 0644   ${WORKDIR}/nisetled.service            ${D}${systemd_unitdir}/system
-		install -m 0644   ${WORKDIR}/nisetprimarymac.service     ${D}${systemd_unitdir}/system
+		install -m 0644   ${S}/nisetbootmode.service       ${D}${systemd_unitdir}/system
+		install -m 0644   ${S}/nisetled.service            ${D}${systemd_unitdir}/system
+		install -m 0644   ${S}/nisetprimarymac.service     ${D}${systemd_unitdir}/system
 	fi
 
 	chown 0:${LVRT_GROUP} ${D}${bindir}/status_led

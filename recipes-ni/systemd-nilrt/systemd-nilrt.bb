@@ -18,14 +18,14 @@ SYSTEMD_SERVICE:${PN}:append = " \
 	nihostname.service \
 "
 
-S = "${WORKDIR}"
+S = "${UNPACKDIR}"
 
 do_install() {
 	install -d ${D}${systemd_unitdir}/system
 	install -d ${D}${libdir}/systemd/scripts
 
-	install -m 0644 ${WORKDIR}/nihostname.service ${D}${systemd_unitdir}/system/nihostname.service
-	install -m 0755 ${WORKDIR}/hostname.sh ${D}${libdir}/systemd/scripts/hostname.sh
+	install -m 0644 ${S}/nihostname.service ${D}${systemd_unitdir}/system/nihostname.service
+	install -m 0755 ${S}/hostname.sh ${D}${libdir}/systemd/scripts/hostname.sh
 }
 
 FILES:${PN}:append = " \

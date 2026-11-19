@@ -47,8 +47,8 @@ do_install () {
 		fi
 		if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
 			install -d ${D}${systemd_system_unitdir}
-			install -m 0644 ${WORKDIR}/nisetfpgaautoload.service ${D}${systemd_system_unitdir}/
-			install -m 0644 ${WORKDIR}/nisetconsoleout.service ${D}${systemd_system_unitdir}/
+			install -m 0644 ${S}/nisetfpgaautoload.service ${D}${systemd_system_unitdir}/
+			install -m 0644 ${S}/nisetconsoleout.service ${D}${systemd_system_unitdir}/
 		fi
 	fi
 }

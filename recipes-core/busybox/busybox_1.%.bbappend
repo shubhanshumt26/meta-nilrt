@@ -71,14 +71,14 @@ INITSCRIPT_PACKAGES:remove = "${PN}-udhcpd"
 do_install:append () {
 	if grep "CONFIG_IFPLUGD=y" ${B}/.config; then
 		install -d ${D}${script_location}
-		install -m 0755 ${WORKDIR}/busybox-ifplugd ${D}${script_location}
+		install -m 0755 ${UNPACKDIR}/busybox-ifplugd ${D}${script_location}
 
 		install -d ${D}${sysconfdir}/ifplugd/
 		install -m 0755 ${UNPACKDIR}/ifplugd.action ${D}${sysconfdir}/ifplugd/
 		install -m 0755 ${UNPACKDIR}/ifplugd.conf ${D}${sysconfdir}/ifplugd/
 		if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
 			install -d ${D}${systemd_unitdir}/system
-			install -m 0644 ${WORKDIR}/busybox-ifplugd.service ${D}${systemd_unitdir}/system/
+			install -m 0644 ${UNPACKDIR}/busybox-ifplugd.service ${D}${systemd_unitdir}/system/
 		fi
 	fi
 	if grep "CONFIG_ACPID=y" ${B}/.config; then
@@ -92,7 +92,7 @@ do_install:append () {
 		install -m 0644 ${UNPACKDIR}/acpid-logrotate.conf ${D}${sysconfdir}/logrotate.d/acpid.conf
 		if ${@bb.utils.contains('INIT_MANAGER','systemd','true','false',d)}; then
 			install -d ${D}${systemd_unitdir}/system
-			install -m 0644 ${WORKDIR}/busybox-acpid.service ${D}${systemd_unitdir}/system/
+			install -m 0644 ${UNPACKDIR}/busybox-acpid.service ${D}${systemd_unitdir}/system/
 		fi
 	fi
 	if grep "CONFIG_ZCIP=y" ${B}/.config; then
@@ -109,7 +109,7 @@ do_install:append () {
 		if ${@bb.utils.contains('INIT_MANAGER', 'systemd','true','false',d)}; then
 			# Remove hwclock.sh from /etc/init.d
 			rm -f ${D}${sysconfdir}/init.d/hwclock.sh
-			install -m 0755 ${WORKDIR}/hwclock.sh ${D}${base_sbindir}
+			install -m 0755 ${UNPACKDIR}/hwclock.sh ${D}${base_sbindir}
 		fi
 	fi
 }
