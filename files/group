@@ -9,6 +9,7 @@ datacomm:x:497:
 render:x:495:
 systemd-network:x:494:
 systemd-resolve:x:493:
+empower:x:492:
 # free space
 fwupd-refresh:x:408:
 epmd:x:407:
