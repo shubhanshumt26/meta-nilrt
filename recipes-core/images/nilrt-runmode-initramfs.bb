@@ -50,6 +50,8 @@ bootimg_fixup () {
 
 IMAGE_PREPROCESS_COMMAND += " bootimg_fixup; "
 
+do_rootfs[depends] += "shadow-native:do_populate_sysroot"
+
 
 # ==============================================================================
 # DEPLOYMENT
